@@ -188,6 +188,7 @@ def do_setup(package_data):
             "tqdm",
             "bitarray",
             "torchaudio>=0.8.0",
+            "security==1.2.1",
         ],
         extras_require={
             "dev": ["flake8", "pytest", "black==22.3.0"],
