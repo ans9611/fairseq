@@ -202,7 +202,7 @@ class SpeechToTextJointDataset(SpeechToTextDataset):
 
         net_input["alignment"] = None
         if self.alignment is not None:
-            max_len = max([s.tgt_alignment.size(0) for s in samples])
+            max_len = max(s.tgt_alignment.size(0) for s in samples)
             alignment = torch.ones(len(samples), max_len).float()
             for i, s in enumerate(samples):
                 cur_len = s.tgt_alignment.size(0)

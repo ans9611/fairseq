@@ -131,7 +131,7 @@ def load_reserve_word(reserve_word):
         return []
     with open(reserve_word, "r") as fp:
         res_wrds = [x.strip().split() for x in fp.readlines() if x.strip() != ""]
-        assert sum([0 if len(x) == 2 else 1 for x in res_wrds]) == 0
+        assert sum(0 if len(x) == 2 else 1 for x in res_wrds) == 0
         res_wrds = dict(res_wrds)
     return res_wrds
 
@@ -181,7 +181,7 @@ def main():
         is_running = True
         while is_running:
             time.sleep(5)
-            is_running = sum([job.done() for job in jobs]) < len(jobs)
+            is_running = sum(job.done() for job in jobs) < len(jobs)
         out_sents = list(itertools.chain.from_iterable([job.result() for job in jobs]))
     with open(args.out_path, "w") as fp:
         fp.write("\n".join(out_sents) + "\n")

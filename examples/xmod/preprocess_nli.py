@@ -111,7 +111,7 @@ def read_nli(path, langs=None):
     nlangs = len(lang2count)
     assert nlangs > 0
     lens = list(lang2count.values())
-    assert all([lens[0] == length for length in lens])
+    assert all(lens[0] == length for length in lens)
 
     print(f'Loaded {lens[0]} samples in {nlangs} languages from {path}', file=sys.stderr)
     return data

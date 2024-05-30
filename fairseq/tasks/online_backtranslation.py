@@ -451,7 +451,7 @@ class OnlineBackTranslationTask(TranslationTask):
             models=[], sample=smp, bos_token=bos_token
         )
 
-        max_lngth = max([gn[0]["tokens"].size(0) for gn in generated])
+        max_lngth = max(gn[0]["tokens"].size(0) for gn in generated)
         net_input = smp["net_input"]
         n_src_tokens = torch.empty(
             size=(len(generated), max_lngth + 1), dtype=net_input["src_tokens"].dtype

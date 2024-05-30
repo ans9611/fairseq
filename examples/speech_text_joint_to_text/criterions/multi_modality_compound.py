@@ -113,7 +113,7 @@ class SpeechTextPreTrainCompoundCriterion(FairseqCriterion):
                 SpeechTextPreTrainCompoundCriterion.value2mode(log["mode"])
                 for log in logging_outputs
             ]
-            if sum([1 if l != mds[0] else 0 for l in mds]) > 0:
+            if sum(1 if l != mds[0] else 0 for l in mds) > 0:
                 raise ValueError("mode in one mini-batch is expected to be the same!")
             return mds[0]
 

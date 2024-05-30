@@ -202,7 +202,7 @@ class MultiDecoderSpeechGenerator(SpeechGenerator):
         )
 
         # extract decoder output corresponding to the best hypothesis
-        max_tgt_len = max([len(hypo[0]["tokens"]) for hypo in finalized_mt])
+        max_tgt_len = max(len(hypo[0]["tokens"]) for hypo in finalized_mt)
         prev_output_tokens_mt = (
             src_tokens.new_zeros(src_tokens.shape[0], max_tgt_len)
             .fill_(mt_decoder.padding_idx)

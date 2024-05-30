@@ -83,7 +83,7 @@ class MultiModalityDataset(ConcatDataset):
             return {}
         dataset_idx = samples[0][0]
         # make sure all samples in samples are from same dataset
-        assert sum([0 if dataset_idx == s[0] else 1 for s in samples]) == 0
+        assert sum(0 if dataset_idx == s[0] else 1 for s in samples) == 0
         samples = self.datasets[dataset_idx].collater([x[1] for x in samples])
         # add mode
         samples["net_input"]["mode"] = self.id_to_mode[dataset_idx]

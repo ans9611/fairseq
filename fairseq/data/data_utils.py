@@ -512,7 +512,7 @@ def compute_mask_indices(
 
         mask_idcs.append(np.unique(mask_idc[mask_idc < sz]))
 
-    min_len = min([len(m) for m in mask_idcs])
+    min_len = min(len(m) for m in mask_idcs)
     for i, mask_idc in enumerate(mask_idcs):
         if len(mask_idc) > min_len and require_same_masks:
             mask_idc = np.random.choice(mask_idc, min_len, replace=False)

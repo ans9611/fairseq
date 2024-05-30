@@ -313,7 +313,7 @@ class HubertModel(BaseFairseqModel):
             self.final_proj = nn.Linear(cfg.encoder_embed_dim, final_dim)
 
         # modules below are not needed during fine-tuning
-        if any([d is None for d in dictionaries]):
+        if any(d is None for d in dictionaries):
             logger.info("cannot find dictionary. assume will be used for fine-tuning")
         else:
             self.num_classes = [len(d) for d in dictionaries]
@@ -404,7 +404,7 @@ class HubertModel(BaseFairseqModel):
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         # Trim features to ensure labels exist and then get aligned labels
         feat_tsz = features.size(2)
-        targ_tsz = min([t.size(1) for t in target_list])
+        targ_tsz = min(t.size(1) for t in target_list)
         if self.feat2tar_ratio * feat_tsz > targ_tsz:
             feat_tsz = int(targ_tsz / self.feat2tar_ratio)
             features = features[..., :feat_tsz]

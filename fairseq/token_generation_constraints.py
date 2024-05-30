@@ -73,7 +73,7 @@ def pack_constraints(batch_constraints: List[List[torch.Tensor]]) -> torch.Tenso
             # number of constraints, plus sum of constrain lens, plus a zero after each
             constraints_len = (
                 1
-                + sum([c.size(0) for c in sentence_constraints])
+                + sum(c.size(0) for c in sentence_constraints)
                 + len(sentence_constraints)
             )
             max_constraints_len = max(max_constraints_len, constraints_len)

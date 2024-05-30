@@ -71,7 +71,7 @@ class AddTargetDataset(BaseWrapperDataset):
                     left_pad=False,
                 )
         else:
-            collated["ntokens"] = sum([len(t) for t in target])
+            collated["ntokens"] = sum(len(t) for t in target)
 
         collated["target"] = target
         return collated

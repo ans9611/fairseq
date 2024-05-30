@@ -222,7 +222,7 @@ def get_prefix_no_bpe(sentence, bpe_symbol, prefix_len):
 
 def get_prefix_from_len(sentence, bpe_symbol, prefix_len):
     """get the prefix of sentence with bpe, with prefix len in terms of words, not bpe tokens"""
-    bpe_count = sum([bpe_symbol.strip(" ") in t for t in sentence[:prefix_len]])
+    bpe_count = sum(bpe_symbol.strip(" ") in t for t in sentence[:prefix_len])
     if bpe_count == 0:
         return sentence[:prefix_len]
     else:
