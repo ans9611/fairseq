@@ -7,7 +7,6 @@ import io
 import logging
 import os
 import pickle
-import random
 import socket
 import struct
 import subprocess
@@ -21,6 +20,7 @@ import torch
 import torch.distributed as dist
 from fairseq.dataclass.configs import DistributedTrainingConfig, FairseqConfig
 from omegaconf import open_dict
+import secrets
 
 try:
     import torch_xla.core.xla_model as xm
@@ -141,7 +141,7 @@ def _infer_single_node_init(cfg: DistributedTrainingConfig):
     assert (
         cfg.distributed_world_size <= torch.cuda.device_count()
     ), f"world size is {cfg.distributed_world_size} but have {torch.cuda.device_count()} available devices"
-    port = random.randint(10000, 20000)
+    port = secrets.SystemRandom().randint(10000, 20000)
     cfg.distributed_init_method = "tcp://localhost:{port}".format(port=port)
 
 
